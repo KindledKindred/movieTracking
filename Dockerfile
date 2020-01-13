@@ -1,6 +1,6 @@
 FROM python:3.6
 
-RUN apt-get update -y && apt-get install -yq make cmake gcc g++ unzip wget build-essential gcc zlib1g-dev
+RUN apt-get update -y && apt-get install -yq make cmake gcc g++ unzip wget build-essential gcc zlib1g-dev libx11-dev
 
 # Opencvのインストール
 RUN ln -s /usr/include/libv4l1-videodev.h /usr/include/linux/videodev.h
@@ -16,6 +16,9 @@ RUN cd ~/tmp/opencv-3.1.0 && make -j2 && make install
 
 # TensorflowとOpencvのインストール
 RUN pip3 install numpy tensorflow opencv-python
+
+# XQuartz用の設定
+RUN export DISPLAY=host.docker.internal:0.0
 
 ENV APP_NAME tensor-docker
 WORKDIR /home/$APP_NAME
