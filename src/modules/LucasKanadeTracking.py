@@ -55,7 +55,7 @@ class LucasKanadeTracker(object):
 		  self.step() # 次のフレームへ
 
 	  	# 画像を読み込みグレースケール画像を作成
-		self.image = cv2.imread(self.imnames[self.current_frame])
+		self.image = imread_web.imread_web(self.imnames[self.current_frame])
 		self.gray = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
 
 	  	# 入力フォーマットに合うように変換
@@ -108,3 +108,18 @@ class LucasKanadeTracker(object):
 
 			cv2.imshow('LucasKanadeTrack', self.image)
 			cv2.waitKey()
+
+
+	def track(self):
+		""" シーケンスを順番に返すジェネレータ """
+
+		for i in range(len(self.imnames)):
+			if self.features == []:
+				self.detect_points()
+			else:
+				self.track_points()
+		
+		# RGB でコピーを作成
+		f = np.array(self.features).reshape(-1, 2)
+		im = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
+		yield im ,f

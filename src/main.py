@@ -1,17 +1,22 @@
 from modules import LucasKanadeTracking as lktrack
 
 imnames = [
-	'https://picsum.photos/200/300',
-	'https://picsum.photos/200/300',
-	'https://picsum.photos/200/300'
+	'https://dl.dropboxusercontent.com/s/qprc4fgzafwc3gt/20200114_133503_001%20%28edited-Pixlr%29.jpg',
+	'https://dl.dropboxusercontent.com/s/qjfmp2ucuckelqf/20200114_133503_002%20%28edited-Pixlr%29.jpg',
+	'https://dl.dropboxusercontent.com/s/gmrexcfll4jc9nr/20200114_133503_003%20%28edited-Pixlr%29.jpg',
 ]
 
 # 追跡オブジェクトを生成
 lktrackObj = lktrack.LucasKanadeTracker(imnames)
 
-# 最初のフレームで特徴点を検出し残りのフレームで追跡
-lktrackObj.detect_points()
-lktrackObj.draw()
-for i in range(len(imnames) - 1):
-	lktrackObj.track_points()
-	lktrackObj.draw()
+for im, ft in lktrackObj.track():
+	print('tracking %d features' % len(ft))
+
+	figure()
+	imshow(im)
+	for p in ft:
+		plot(p[0], p[1], 'bo')
+	for t in lktrackObj.tracks:
+		plot([p[0] for p in t], [p[1] for p in t])
+	axis('off')
+	show()
