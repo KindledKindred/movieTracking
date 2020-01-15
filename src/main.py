@@ -1,4 +1,6 @@
+import matplotlib.pyplot as plt
 from modules import LucasKanadeTracking as lktrack
+import cv2
 
 imnames = [
 	'https://dl.dropboxusercontent.com/s/qprc4fgzafwc3gt/20200114_133503_001%20%28edited-Pixlr%29.jpg',
@@ -12,11 +14,11 @@ lktrackObj = lktrack.LucasKanadeTracker(imnames)
 for im, ft in lktrackObj.track():
 	print('tracking %d features' % len(ft))
 
-	figure()
-	imshow(im)
+	plt.figure()
+	plt.imshow(im)
 	for p in ft:
-		plot(p[0], p[1], 'bo')
+		plt.plot(p[0], p[1], 'bo')
 	for t in lktrackObj.tracks:
-		plot([p[0] for p in t], [p[1] for p in t])
-	axis('off')
-	show()
+		plt.plot([p[0] for p in t], [p[1] for p in t])
+	plt.axis('off')
+	plt.show()

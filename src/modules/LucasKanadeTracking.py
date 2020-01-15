@@ -62,7 +62,7 @@ class LucasKanadeTracker(object):
 		tmp = np.float32(self.features).reshape(-1, 1, 2)
 
 	  	# オプティカルフローを計算
-		features, status, track_error = cv2.clacOptionalFlowPyrLK(
+		features, status, track_error = cv2.calcOpticalFlowPyrLK(
 	  		self.prev_gray,
 	  		self.gray,
 	  		tmp,
