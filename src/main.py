@@ -3,9 +3,9 @@ from modules import LucasKanadeTracking as lktrack
 import cv2
 
 imnames = [
-	'https://dl.dropboxusercontent.com/s/qprc4fgzafwc3gt/20200114_133503_001%20%28edited-Pixlr%29.jpg',
-	'https://dl.dropboxusercontent.com/s/qjfmp2ucuckelqf/20200114_133503_002%20%28edited-Pixlr%29.jpg',
-	'https://dl.dropboxusercontent.com/s/gmrexcfll4jc9nr/20200114_133503_003%20%28edited-Pixlr%29.jpg',
+	'https://dl.dropboxusercontent.com/s/jp5nspxniujs8e8/image_mosicing01.png',
+	'https://dl.dropboxusercontent.com/s/5z99l7uptqvbicu/image_mosicing02.png',
+	'https://dl.dropboxusercontent.com/s/t1zwoq23ko627d6/image_mosicing03.png',
 ]
 
 # 追跡オブジェクトを生成
